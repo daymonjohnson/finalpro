@@ -3,15 +3,20 @@
     let game = {
         template: `
         <div ng-init="$ctrl.getTrackId()">
+        <div ng-show="$ctrl.load" class="preloader">
+        <img class="loadingImage" src="loader.gif">
+        </div>
             <div class="tracker">
                 <span ng-repeat="conds in $ctrl.count"class = "winContainer"><i class={{conds.class}}></i></span>
-            </div>
-            <div class="content">
-                <p>Lyric: {{$ctrl.lyrics}} </p>
-                <input class = "input" type = "text" placeholder="Guess the song" ng-model="$ctrl.guess"><button class="mybtn" ng-click="$ctrl.getSongName($ctrl.songNum); $ctrl.getTrackId($ctrl.songNum)">GEET'EM</button>
-                <p> Result: {{$ctrl.result}} {{$ctrl.condition}}</p>
-            </div>
-            <div class="modal" ng-show="$ctrl.show">{{$ctrl.modalText}}<img src="{{$ctrl.resultImg}}" width="200px"><a href="#!/home"><button>Play again?</button></a></div>
+                </div>
+                <div class="content">
+                
+                    <p>Lyric: {{$ctrl.lyrics}} </p>
+                    <input class = "input" type = "text" placeholder="Guess the song" ng-model="$ctrl.guess"><button class="mybtn" ng-click="$ctrl.getSongName($ctrl.songNum); $ctrl.getTrackId($ctrl.songNum)">GEET'EM</button>
+                    <p> Result: {{$ctrl.result}} {{$ctrl.condition}}</p>
+                </div>
+            <div class="background" ng-show="$ctrl.background">
+            <div class="modal" ng-show="$ctrl.show">{{$ctrl.modalText}}<br/><img src="{{$ctrl.resultImg}}" width="150px"><a href="#!/home"><button class="playAgain">Play again?</button></a></div></div>
 
         </div>
         `,
@@ -19,7 +24,9 @@
         controller: function (service) {
 
             let vm = this;
+            vm.load = true;
             vm.artist = "";
+            vm.artistid="";
             vm.lyrics = "";
             vm.guess = "";
             vm.result = "";
@@ -31,11 +38,15 @@
             vm.resultImg = "";
             // guessSong function will determine if the users answer is correct or not and give an appropriate response
             vm.guessSong = function (guess) {
+                if(guess.indexOf("?") > -1) {
+                    guess = guess.substring(0, guess.indexOf("?"));
+                    return guess;
+                }
                 if (guess.toLowerCase() == vm.songName.toLowerCase()) {
                     console.log("correct");
                     vm.result = "correct";
                     vm.wins++;
-                    if (vm.wins === 7) {
+                    if (vm.wins === 5) {
                         vm.condition = "you win!";
                         vm.wins = 0;
                         vm.losses = 0;
@@ -44,6 +55,7 @@
                         vm.modalText = "You win!";
                         vm.resultImg = "https://i.gifer.com/Wvua.gif";
                         vm.show =! vm.show;
+                        vm.background =! vm.background;
                     }
                     vm.count.push({ class: "fas fa-trophy" });
                     console.log(vm.count);
@@ -69,12 +81,13 @@
                     return vm.result;
                 }
             }
-
             // getLyrics using the trackId to get lyrics
             vm.getLyrics = function () {
                 service.getLyrics(vm.songNum).then(function () {
                     vm.lyrics = service.beLyrics();
                     return vm.lyrics;
+                }).finally(function(){
+                    vm.load = false;
                 });
             }
 
@@ -106,12 +119,15 @@
             $("button").on("click", function () {
                 $("input").val("");
             });
+            $(".playAgain").on("click", function(){
+                window.location.reload();
+            });
 
 
 
             $('input').keypress(function (e) {
                 if (e.which == 13) {
-                    $('button').click();
+                    $('.mybtn').click();
                     return false;
                 }
             });

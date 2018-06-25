@@ -2,20 +2,23 @@
 {
     let service = function ($http) {
         let vm = this;
+        let load = true;
         let trackId = 0;
         let lyrics = "";
         var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         const APIKey = "c42ef466fff57d1c817a1efd2f2ebf38";
 
+        // beArtist returns data from the api
         let beArtist = function () {
             return beArtist;
         }
 
+        // setArtist allows artist selected to be stored as a variable to be passed back to the home page
         let setArtist = function (newArtist) {
             beArtist = newArtist;
         }
 
-        // beLyrics returns the data from the service
+        // beLyrics returns the data from the api
 
         let beLyrics = function () {
             return lyrics;
@@ -27,8 +30,8 @@
         // Grabs a snippet of lyrics from our API. Also updates the lyrics variable. 
         let getLyrics = function (trackId) {
             let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/track.snippet.get?format=json&track_id=${trackId}&apikey=c42ef466fff57d1c817a1efd2f2ebf38`
+            
             return $http.get(url).then(function (response) {
-
                 let lyrics = response.data.message.body.snippet.snippet_body;
                 setLyrics(lyrics);
                 return lyrics;
@@ -61,6 +64,7 @@
 // getSongName takes the trackId to get the name of the specific song. 
 let getSongName = function (trackId) {
     let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/track.get?format=json&track_id=${trackId}&apikey=c42ef466fff57d1c817a1efd2f2ebf38`;
+    
     return $http.get(url).then(function (response) {
         console.log(url);
         var songName = response.data.message.body.track.track_name;
@@ -70,6 +74,9 @@ let getSongName = function (trackId) {
         } else if (songName.indexOf("(") > -1) {
             songName = songName.substring(0, songName.indexOf("(") - 1);
             return songName;
+        }else if(songName.indexOf("?") > -1) {
+            songName = songName.substring(0, songName.indexOf("?"));
+            return songName;
         }
         console.log(songName);
         return songName;
@@ -77,7 +84,7 @@ let getSongName = function (trackId) {
 }
 $('input').keypress(function (e) {
     if (e.which == 13) {
-      $('button').click();
+      $('.mybtn').click();
       return false;
     }
   });
@@ -90,7 +97,8 @@ return {
     setLyrics,
     getSongName,
     beArtist,
-    setArtist
+    setArtist,
+    load
 };
 
 }
