@@ -1,11 +1,11 @@
 /* home page styling */
-h1{
-    font-family: 'Montserrat', sans-serif; 
+.appName{
+    font-family: 'Luckiest Guy', cursive;
     letter-spacing: 2px;
     text-align: center;
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     text-shadow: 3px 4px 10px black;
-    margin-top: 22%;
+    margin-top: 30%;
  }
 
  .home{
@@ -14,6 +14,9 @@ h1{
      height: 80vh;
      z-index: -1;
  }
+.homeP{
+     font-family: 'Righteous', cursive;
+}
 
  html {
     position: absolute;
@@ -21,9 +24,13 @@ h1{
     bottom: 0%;
     left: 0%;
     right: 0%;
+    height: 100%; 
+    width: 100%;
  }
   body{
     /* font-family: 'Montserrat', sans-serif; */
+    border: none;
+    text-decoration: none;
     font-family: 'Righteous', cursive;
     letter-spacing: 1px;
     background: linear-gradient(black, rgb(122, 26, 195)) no-repeat center;
@@ -37,17 +44,28 @@ h1{
     text-align: center;
  }
 
+ span{
+    font-size: 20px; 
+    font-family: 'Righteous', cursive;
+    
+ }
+
  .homeContent{
      display: flex;
      flex-direction: column;
      align-items: center;
      align-self: center;
-     margin-top: 10%;
  }
 
  button{
     margin:auto;
     display:block;
+    cursor: pointer;
+    font-family: 'Righteous', cursive;
+  }
+
+  button:hover{
+    cursor: pointer;
   }
 
   a{
@@ -58,35 +76,64 @@ h1{
      border: none;
      color:white;
      border-radius: 10px;
-     background-color: rgba(255, 255, 255, 0.3);
+     background: linear-gradient(black, rgba(122, 26, 195,0.6)) no-repeat center;
+     /* background-color: rgba(255, 255, 255, 0.2); */
      box-shadow: 3px 3px 10px black;
      margin: auto; 
      display: block;
-     font-size: 1rem;
+     font-size: 1.5rem;
      letter-spacing: 2px;
-     padding-top: 6px;
-     padding-bottom: 6px;
-     padding-left: 10px;
-     padding-right: 10px;
+     padding-top: 20%;
+     padding-bottom: 20px;
+     padding-left: 50px;
+     padding-right: 50px;
+     font-family: 'Righteous', cursive;
 }
 
-.mybtnHome:hover {
-    background-color: purple; 
+.fa-play {
+    display: none;
+}
+
+.mybtnHome:hover{
+    /* background-color: purple;  */
     color: white;
+    display:inline;
 }
-.mybtnHome:active {
-    /* box-shadow: 0px 5px #666;
-    background-color: #3e8e41; */
-    /* transform: translateY(4px); */
+
+.mybtnHome:after, .fa-play:after{
+    color: white;
+    display: inline;
 }
+
+
+/* .button span:after {
+    content: '';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+   }
+   
+   .button:hover span {
+    padding-right: 25px;
+   }
+   
+   .button:hover span:after {
+    opacity: 1;
+    right: 0;
+   } */
+
+
+
 
 .inputHome{
     border: none;
     border-radius: 10px;
     display: inline-block;
     color: white;
-    font-size: 1.2rem;
-    padding: 2% 3%;
+    font-size: 1.3rem;
+    padding: 1% 2%;
     margin-bottom: 5%;
     background: url("https://media.giphy.com/media/3o7bu9zwfieCd1R9HG/giphy.gif");
     background-position: center;
@@ -94,7 +141,7 @@ h1{
 
  input::placeholder {
      color: white;
-     font-family: 'Montserrat', sans-serif;
+     font-family: 'Righteous', sans-serif;
  }
  input:focus {
      outline: none;
@@ -110,31 +157,33 @@ h1{
     position: absolute;
 }
 
+.footer{
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(43, 34, 42, 0.438);
+    color: white;
+    text-align: center;
+    letter-spacing: 0;
+    padding: 5px;
+    font-size: 1rem;
+    z-index: 300;
+}
+
 /* end home page*/
 /* start modal*/
-.modal {
 
-    top: 10%;
-    left:10%;
-    margin: 0 auto;
-    z-index: 10;
-    border: 1px solid black;
-    position: fixed;
-    background-color: white;
-}
 .content {
     z-index: 0;
     position: relative;
 }
-/* end modal */
 /* start game page */
 .tracker {
     z-index: 0;
     position: relative;
 }
-
-
-
 /* start loading image */
 .preloader {
     display: flex;
@@ -150,50 +199,170 @@ h1{
     background: linear-gradient(black, rgb(122, 26, 195)) no-repeat center;
 }
 
-.loadingRecord {
-    margin-top: 50%;
+.loadingText {
+    position: relative;
+    margin-top: 350px;
 }
+
+/* start setting page */
+
 .loadingImage{
     height: 30vh;
     margin: 0 auto;
     position: absolute;
-   
-}
-/* start setting page */
-.settingsContent{
-display: flex;
-flex-direction: column;
-    
 }
 
+.settingsContent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%; 
+      } 
+    
+     
+
+
 .difficultyButton{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;
+    text-align: center;    
+    /*flex-wrap: nowrap;*/
+    transition: all linear 0.5s;
+    height: 60px;
     width: 70%;
     background-color: white;
     border-radius: 5px;
     border: none;
-    /* color:  rgb(168, 72, 72); */
-    font-family:  'Shrikhand', cursive ; 
+    font-family:  'Righteous', cursive ; 
     font-size: 30px;  
     margin-bottom: 3%;
-    box-shadow: 3px 4px 10px black;
-    background-color: rgba(255, 255, 255, 0.3);
+    background: linear-gradient(black, rgba(122, 26, 195,0.6)) no-repeat center;
+    box-shadow: 3px 3px 10px black;
+    /* box-shadow: 3px 4px 10px black; */
+    /* background-color: rgba(255, 255, 255, 0.3); */
     color: white;
+}
+.difficultyButtonInsane{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;
+    text-align: center;    
+    /*flex-wrap: nowrap;*/
+    transition: all linear 0.5s;
+    height: 60px;
+    width: 70%;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    font-family:  'Righteous', cursive ; 
+    font-size: 30px;  
+    margin-bottom: 3%;
+    background: linear-gradient(black, rgba(122, 26, 195,0.6)) no-repeat center;
+    box-shadow: 3px 3px 10px black;
+    /* box-shadow: 3px 4px 10px black; */
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    color: white;
+}
+
+.difficultyButtonInsane:hover{
+    background: url("https://media3.giphy.com/media/6wpHEQNjkd74Q/giphy.gif")no-repeat center;
+    background-size: cover;
+    opacity:0.8;
+    box-shadow: 1px 2px 10px rgb(255, 110, 20);
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 .difficultyButton:hover{
     background-color:rgb(168, 72, 155); 
     color:white;  
-    box-shadow: 1px 2px 10px black;    
+    box-shadow: 1px 2px 10px black;  
+    justify-content:center;
+    align-content: center;
 }
 
 
 .difficultyButton:active {
     background-color: purple;
-    box-shadow: 0 5px #666;
+    box-shadow: 0 5px black;
     transform: translateY(4px);
 }
 
+.ng-show {
+    height: 100%;
+}
+
+@keyframes myChange {
+    from {
+        height: 100px;
+    } to {
+        height: 150px;
+    }
+}
+.difficultyButton.ng-show {
+    animation: 0.5s myChange;
+}
 /* end settings page */
+
+/* Start Modal */
+.modal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    bottom: 10%;
+    top: 20%;
+    margin: 0 auto;
+    width: 80%;
+    height: 50%;
+    z-index: 10;
+    background: url("https://media.giphy.com/media/3o7bu9zwfieCd1R9HG/giphy.gif") no-repeat center;
+}
+.modalImg{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50%;
+    border-radius: 10%;
+}
+.conditionText{
+    margin: 3%;
+    font-size: 1.7vw;
+}
+/* loss modal image */
+.resultImage {
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.playAgain {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1%;
+    border: none;
+    color:white;
+    border-radius: 10px;
+    align-content: center;
+    background-color: rgba(255, 255, 255, 0.39);
+    /* height: 10%; */
+    margin-bottom: 12px;
+    margin-top: 3%;
+    display: block;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-top: 3%;
+    padding: 2%;
+}
+
+/* End Modal */
+
 /* Game Page */
 
 .mybtnGame {
@@ -202,7 +371,7 @@ flex-direction: column;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.3);
     box-shadow: 3px 3px 10px black;
-    padding: 10% 22%;
+    /* padding: 10% 22%; */
     margin: 0 auto;
     font-size: 1rem;
     letter-spacing: 2px;
@@ -268,13 +437,47 @@ flex-direction: column;
      border: 2px solid white;
  }
 
+ button:active{
+    outline: none;
+    border: 2px solid white;
+ }
+ button:clicked{
+    outline: none;
+    border: 2px solid white;
+ }
 
-.fas {
+.fa-times {
     width: 10%;
+    color: red;
 }
+
+.fa-trophy {
+    width: 10%;
+    color: goldenrod;
+}
+/* beginning of desktop size styling */
+
 @media only screen and (min-width: 600px) {
-    body {
+    /* body {
         background-color: orange;
+    } */
+    .appName{
+        margin-top: 25%;    
+    }    
+    h2.conditionText{
+        font-size: 4vw;
+    }
+    
+}
+
+@media only screen and (min-width: 900px) {
+    body {
+        background-color: darkslateblue;
+    }
+    .appName{
+        margin-top: 8%;    
+    }    
+    h2.conditionText{
+        font-size: 4vw;
     }
 }
-

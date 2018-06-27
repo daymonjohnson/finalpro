@@ -5,23 +5,24 @@
         <div ng-init="$ctrl.getTrackId()">
         <div ng-show="$ctrl.load" class="preloader">
         <img class="record loadingImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Vinyl_record.svg/2000px-Vinyl_record.svg.png" />
-        <p class="loadingRecord">Loading...</p>
+        <p class="loadingText">Loading...</p>
         </div>
             <div class="tracker">
-                <span ng-repeat="conds in $ctrl.count"class = "winContainer"><i class={{conds.class}}></i></span>
+                <span ng-repeat="conds in $ctrl.count" class = "winContainer"><i class={{conds.class}}></i></span>
                 </div>
                 <div class="content">
     
                 
                     <p class="lyrics">"{{$ctrl.lyrics}}"</p>
                     <p>- {{$ctrl.artist}} </p>
-                    <input class = "inputGame" type = "text" placeholder="Guess the song" ng-model="$ctrl.guess"><button class="mybtnGame" ng-click="$ctrl.getSongName($ctrl.songNum); $ctrl.getTrackId($ctrl.songNum)">Smash</button>
+                    <input class = "inputGame" type = "text" placeholder="Guess the song" ng-model="$ctrl.guess"><button class="mybtnGame" ng-click="$ctrl.getSongName($ctrl.songNum); $ctrl.getTrackId()">Smash</button>
                     <p>{{$ctrl.result}}</p>
                 </div>
             <div class="background" ng-show="$ctrl.background">
-            <div class="modal" ng-show="$ctrl.show">{{$ctrl.modalText}}<br/><img src="{{$ctrl.resultImg}}" width="150px"><a href="#!/home"><button class="playAgain">Play again?</button></a></div></div>
+            <div class="modal" ng-show="$ctrl.show"><h1 class="conditionText">{{$ctrl.modalText}}</h2><br><h2 class="conditionText">{{$ctrl.modalTextTwo}}</h2><br><h2 class="conditionText">{{vm.songText}}</h2><img class="modalImg" src="{{$ctrl.resultImg}}"><a href="#!/home"><button class="playAgain">Play again?</button></a></div></div>
 
         </div>
+        <div class="footer"><em><i class="fas fa-code"></i> with <i class="fas fa-heart"></i> from Claire, Kelly, DJ, and Roger!</em></div>
         `,
         // empty strings are created here that are filled in when a specific artist, lyric, guess is called. 
         controller: function (service) {
@@ -37,6 +38,7 @@
             vm.losses = 0;
             vm.count = [];
             vm.modalText = "";
+            vm.modalTextTwo = "";
             vm.resultImg = "";
             vm.gameType = service.difficulty();
 
@@ -56,7 +58,7 @@
 
                         $(".mybtn").prop('disabled', true);
                         vm.modalText = "You win!";
-                        vm.resultImg = "https://i.gifer.com/Wvua.gif";
+                        vm.resultImg = "https://media3.giphy.com/media/R9YeL5bxPc34c/giphy.gif";
                         vm.show = !vm.show;
                         vm.background = !vm.background;
                     }
@@ -89,8 +91,10 @@
                         vm.wins = 0;
                         vm.losses = 0;
                         $(".mybtn").prop('disabled', true);
-                        vm.modalText = "You are a loser! The correct answer was: " + vm.songName;
-                        vm.resultImg = "https://media1.popsugar-assets.com/files/thumbor/B8lOru9rf0j1aOafrCxnqK6fKeA/fit-in/1200x630/filters:format_auto-!!-:strip_icc-!!-:fill-!white!-/2017/05/12/985/n/3019466/53c5add94ca9772d_pizza2/i/Pizza-you-when-youre-sad.gif";
+                        vm.modalText = `GAME OVER!`;
+                        vm.modalTextTwo = `The correct answer was: ${vm.songName}`;
+                        vm.songText = vm.songName;
+                        vm.resultImg = "https://media0.giphy.com/media/1QJ3bY1RkiqWY/giphy.gif";
                         vm.show = !vm.show;
                         vm.background = !vm.background;
 
@@ -148,7 +152,7 @@
 
             $('input').keypress(function (e) {
                 if (e.which == 13) {
-                    $('.mybtn').click();
+                    $('.mybtnGame').click();
                     return false;
                 }
             });

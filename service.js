@@ -30,7 +30,7 @@
         let setLyrics = function (newlyrics) {
             lyrics = newlyrics;
         }
-        // Grabs a snippet of lyrics from our API. Also updates the lyrics variable. 
+        // Grabs a snippet of lyrics from our API by using the trackID. Also updates the lyrics variable. 
         let getLyrics = function (trackId) {
             let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/track.snippet.get?format=json&track_id=${trackId}&apikey=${APIKey}`
             
@@ -40,7 +40,8 @@
                 return lyrics;
             });
         }
-        // getTrackId grabs tracks from our API and puts the trackId into the getLyrics function    
+        // getTrackId grabs tracks from our API and puts the trackId into the getLyrics function 
+        // end point is the track rating, we pull in array lenth of 10.     
         let getTrackId = function (artist) {
             var artist = artist.split(" ").join("%20");
             let i = array.length;
@@ -50,8 +51,7 @@
             console.log(j);
     let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/track.search?format=json&q_artist=${artist}&s_track_rating=desc&apikey=${APIKey}`
     
-    return $http.get(url)
-    .then(function (response) {
+    return $http.get(url).then(function (response) {
 
         //create random number generator between 1 and 10 to find the index of the song. 
         //varying difficulties can change the number generated. 
@@ -98,10 +98,10 @@ let getSongName = function (trackId) {
 
 $('input').keypress(function (e) {
     if (e.which == 13) {
-      $('.mybtn').click();
+      $('.mybtnGame').click();
       return false;
-    }
-  });
+    } 
+  }); 
 
 
 
