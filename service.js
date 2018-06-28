@@ -49,7 +49,7 @@
             j = Math.floor(Math.random() * (i));
             let n = array[j];
             console.log(j);
-    let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/track.search?format=json&q_artist=${artist}&s_track_rating=desc&apikey=${APIKey}`
+    let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/track.search?format=json&q_artist=${artist}&s_track_rating=desc&f_has_lyrics&apikey=${APIKey}`
     
     return $http.get(url).then(function (response) {
 
@@ -60,6 +60,11 @@
         getLyrics(trackNum);
         array.splice(j,1);
         console.log(array);
+        if(trackNum===87818215){
+            trackNum = 89179138;
+            return trackNum;
+        }
+
         return trackNum;
     })
 }
@@ -82,6 +87,9 @@ let getSongName = function (trackId) {
         }else if(songName.indexOf("?") > -1) {
             songName = songName.substring(0, songName.indexOf("?"));
             return songName;
+        } else if (songName.indexOf("!") > -1) {
+            songName = songName.substring(0, songName.indexOf("!"));
+            return songName;
         }
         console.log(songName);
         return songName;
@@ -99,6 +107,13 @@ let getSongName = function (trackId) {
 $('input').keypress(function (e) {
     if (e.which == 13) {
       $('.mybtnGame').click();
+      return false;
+    } 
+  }); 
+
+  $('input').keypress(function (e) {
+    if (e.which == 13) {
+      $('.mybtnHome').click();
       return false;
     } 
   }); 

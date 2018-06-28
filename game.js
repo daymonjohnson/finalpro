@@ -40,12 +40,16 @@
             vm.modalText = "";
             vm.modalTextTwo = "";
             vm.resultImg = "";
+            vm.copyright = 0;
             vm.gameType = service.difficulty();
 
             // guessSong function will determine if the users answer is correct or not and give an appropriate response
             vm.guessSong = function (guess) {
                 if (guess.indexOf("?") > -1) {
                     guess = guess.substring(0, guess.indexOf("?"));
+                    return guess;
+                } else if (guess.indexOf("!") > -1) {
+                    guess = guess.substring(0, guess.indexOf("!"));
                     return guess;
                 }
                 if (guess.toLowerCase() == vm.songName.toLowerCase()) {
@@ -105,10 +109,13 @@
             // getLyrics using the trackId to get lyrics. If lyric not found, call function again. 
             vm.getLyrics = function () {
                 service.getLyrics(vm.songNum).then(function (response) {
-                    if (response === "") {
-                        console.log("Lyrics not found");
+
+                    if (response === "" && vm.copyright > 0) {
+                        alert("Error: copyright issue");
+                    } else if (response === ""){
                         vm.getTrackId(service.beArtist());
                         vm.wins++;
+                        vm.copyright++;  
                     }
                     vm.lyrics = service.beLyrics();
                     return vm.lyrics;
@@ -132,6 +139,7 @@
                     .then(function (response) {
                         console.log("It's working");
                         vm.artist = service.beArtist();
+
                         console.log("vm.artist is " + vm.artist)
                         vm.songNum = response;
                         vm.getLyrics();
