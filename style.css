@@ -485,7 +485,7 @@
         flex-direction: row;
         justify-content: space-around;
         flex-flow: row wrap;
-        height: 100vh;
+        height: 80vh;
         width: 80%;
     }
     .difficultyButton{
