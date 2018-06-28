@@ -69,7 +69,7 @@
   }
 
   a{
-      text-decoration: none;
+     text-decoration: none;
   }
 
  .mybtnHome{
@@ -243,7 +243,7 @@
     /* background-color: rgba(255, 255, 255, 0.3); */
     color: white;
 }
-.difficultyButtonInsane{
+#difficultyButtonInsane{
     display: flex; 
     flex-direction: column;
     justify-content: center;  
@@ -265,8 +265,7 @@
     /* background-color: rgba(255, 255, 255, 0.3); */
     color: white;
 }
-
-.difficultyButtonInsane:hover{
+#difficultyButtonInsane:hover{
     background: url("https://media3.giphy.com/media/6wpHEQNjkd74Q/giphy.gif")no-repeat center;
     background-size: cover;
     opacity:0.8;
@@ -480,4 +479,31 @@
     h2.conditionText{
         font-size: 4vw;
     }
+    .settingsContent{
+        display: flex;
+        flex: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-flow: row wrap;
+        height: 100vh;
+        width: 80%;
+    }
+    .difficultyButton{
+        width: 35vw;
+        height: 35vh;
+        margin-right: 30px;
+    }
+    #difficultyButtonInsane{
+        width: 35vw;
+        height: 35vh;
+        margin-left: 2%;
+    }
+    .settingsContainer{
+        display: flex;
+        justify-content: center;
+    }
+    h1{
+        margin-bottom: 0px;
+    }
+ 
 }
